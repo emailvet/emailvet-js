@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "rules_version": "2026.10.21.3",
+  "providers": {
+    "gmail": {
+      "name": "Gmail",
+      "domains": [
+        "gmail.com",
+        "googlemail.com"
+      ],
+      "canonical_domain": "gmail.com",
+      "rules": {
+        "lowercase_local_part": true,
+        "lowercase_local_part_confidence": "guaranteed",
+        "subaddressing": {
+          "separator": "+",
+          "strip": true,
+          "confidence": "guaranteed"
+        },
+        "dots": {
+          "behavior": "ignore",
+          "confidence": "guaranteed"
+        },
+        "canonical_domain": {
+          "confidence": "guaranteed"
+        }
+      },
+      "sources": [
+        {
+          "title": "Dots don't matter in Gmail addresses",
+          "url": "https://support.google.com/mail/answer/7436150",
+          "last_verified": "2026-10-21"
+        },
+        {
+          "title": "Create task-specific email addresses",
+          "url": "https://support.google.com/a/users/answer/9282734",
+          "last_verified": "2026-10-21"
+        }
+      ],
+      "notes": "gmail.com and googlemail.com are treated as the same Gmail provider and canonicalized to gmail.com."
+    },
+    "outlook": {
+      "name": "Outlook.com",
+      "domains": [
+        "outlook.com"
+      ],
+      "rules": {
+        "lowercase_local_part": true,
+        "lowercase_local_part_confidence": "guaranteed",
+        "subaddressing": {
+          "separator": "+",
+          "strip": true,
+          "confidence": "guaranteed"
+        },
+        "dots": {
+          "behavior": "significant",
+          "confidence": "guaranteed"
+        }
+      },
+      "sources": [
+        {
+          "title": "Add a +site address to your Outlook.com email",
+          "url": "https://support.microsoft.com/en-us/office/add-a-site-address-to-your-outlook-com-email-cc3ed1f7-4223-4f21-8805-7f4c3f8f3f13",
+          "last_verified": "2026-10-21"
+        }
+      ],
+      "notes": "Only outlook.com is included for plus-address canonicalization. hotmail.com, live.com and msn.com are intentionally excluded until provider documentation is sufficiently explicit."
+    },
+    "proton": {
+      "name": "Proton Mail",
+      "domains": [
+        "proton.me",
+        "protonmail.com",
+        "protonmail.ch",
+        "pm.me"
+      ],
+      "rules": {
+        "lowercase_local_part": true,
+        "lowercase_local_part_confidence": "guaranteed",
+        "subaddressing": {
+          "separator": "+",
+          "strip": true,
+          "confidence": "guaranteed"
+        },
+        "dots": {
+          "behavior": "significant",
+          "confidence": "guaranteed"
+        }
+      },
+      "conditional_equivalent_domains": [
+        "proton.me",
+        "protonmail.com",
+        "protonmail.ch",
+        "pm.me"
+      ],
+      "sources": [
+        {
+          "title": "Addresses and aliases",
+          "url": "https://proton.me/support/addresses-and-aliases",
+          "last_verified": "2026-10-21"
+        },
+        {
+          "title": "pm.me addresses",
+          "url": "https://proton.me/support/pm-me-addresses",
+          "last_verified": "2026-10-21"
+        }
+      ],
+      "notes": "Plus aliases are canonicalized. Matching usernames across Proton-owned domains are not canonicalized because those relationships depend on account age, configuration or activation."
+    },
+    "yandex": {
+      "name": "Yandex Mail",
+      "domains": [
+        "yandex.com"
+      ],
+      "rules": {
+        "lowercase_local_part": true,
+        "lowercase_local_part_confidence": "guaranteed",
+        "subaddressing": {
+          "separator": "+",
+          "strip": false,
+          "confidence": "observed"
+        },
+        "dots": {
+          "behavior": "equivalent_to_hyphen",
+          "confidence": "guaranteed"
+        }
+      },
+      "conditional_equivalent_domains": [
+        "ya.ru",
+        "yandex.ru",
+        "yandex.by",
+        "yandex.kz"
+      ],
+      "sources": [
+        {
+          "title": "Why am I receiving someone else's email?",
+          "url": "https://yandex.com/support/yandex-360/customers/mail/en/web/security/strange-letters",
+          "last_verified": "2026-10-21"
+        },
+        {
+          "title": "Additional email addresses",
+          "url": "https://yandex.com/support/yandex-360/customers/mail/en/web/preferences/about-sender/additional-addresses",
+          "last_verified": "2026-10-21"
+        }
+      ],
+      "notes": "Dots and hyphens in Yandex usernames are documented as equivalent, so dots are canonicalized to hyphens. Country and short-domain aliases are not canonicalized because their availability can depend on the account."
+    },
+    "fastmail": {
+      "name": "Fastmail",
+      "domains": [
+        "123mail.org",
+        "150mail.com",
+        "150ml.com",
+        "16mail.com",
+        "2-mail.com",
+        "4email.net",
+        "50mail.com",
+        "airpost.net",
+        "aliencamel.com",
+        "allmail.net",
+        "cluemail.com",
+        "elitemail.org",
+        "emailcorner.net",
+        "emailengine.net",
+        "emailengine.org",
+        "emailgroups.net",
+        "emailplus.org",
+        "emailuser.net",
+        "eml.cc",
+        "f-m.fm",
+        "fast-email.com",
+        "fast-mail.org",
+        "fastem.com",
+        "fastemailer.com",
+        "fastest.cc",
+        "fastimap.com",
+        "fastmail.ca",
+        "fastmail.cn",
+        "fastmail.com",
+        "fastmail.com.au",
+        "fastmail.fm",
+        "fastmail.im",
+        "fastmail.in",
+        "fastmail.jp",
+        "fastmail.mx",
+        "fastmail.net",
+        "fastmail.org",
+        "fastmail.to",
+        "fastmail.tw",
+        "fastmailbox.net",
+        "fastmessaging.com",
+        "fea.st",
+        "fmailbox.com",
+        "fmgirl.com",
+        "fmguy.com",
+        "foobox.com",
+        "foobox.net",
+        "ftml.net",
+        "hailmail.net",
+        "imap-mail.com",
+        "imap.cc",
+        "imapmail.org",
+        "immerbox.com",
+        "immermail.com",
+        "inoutbox.com",
+        "internet-e-mail.com",
+        "internet-mail.org",
+        "internetemails.net",
+        "internetmailing.net",
+        "jetemail.net",
+        "justemail.net",
+        "letterboxes.org",
+        "lifetimeaddress.com",
+        "mail-central.com",
+        "mail-page.com",
+        "mailas.com",
+        "mailbolt.com",
+        "mailc.net",
+        "mailcan.com",
+        "mailforce.net",
+        "mailhaven.com",
+        "mailingaddress.org",
+        "mailite.com",
+        "mailmight.com",
+        "mailnew.com",
+        "mailsent.net",
+        "mailservice.ms",
+        "mailup.net",
+        "mailworks.org",
+        "mailzone.com",
+        "ml1.net",
+        "mm.st",
+        "myfastmail.com",
+        "mymacmail.com",
+        "nospammail.net",
+        "onepost.net",
+        "ownmail.net",
+        "penguinmail.com",
+        "permanentmail.com",
+        "petml.com",
+        "pobox.com",
+        "postinbox.com",
+        "postpro.net",
+        "proinbox.com",
+        "promessage.com",
+        "realemail.net",
+        "reallyfast.biz",
+        "reallyfast.info",
+        "rushpost.com",
+        "sent.as",
+        "sent.at",
+        "sent.com",
+        "siemprebox.com",
+        "siempremail.com",
+        "speedpost.net",
+        "speedymail.org",
+        "ssl-mail.com",
+        "swift-mail.com",
+        "the-fastest.net",
+        "the-quickest.com",
+        "theinternetemail.com",
+        "veribox.net",
+        "veryfast.biz",
+        "veryspeedy.net",
+        "warpmail.net",
+        "xsmail.com",
+        "yepmail.net",
+        "your-mail.com",
+        "fastmail.co.uk",
+        "fastmail.de",
+        "fastmail.es",
+        "fastmail.fr",
+        "fastmail.nl",
+        "fastmail.se",
+        "fastmail.uk",
+        "bestmail.us",
+        "fastemail.us",
+        "fastmail.us",
+        "h-mail.us"
+      ],
+      "rules": {
+        "lowercase_local_part": false,
+        "subaddressing": {
+          "separator": "+",
+          "strip": true,
+          "confidence": "guaranteed"
+        },
+        "dots": {
+          "behavior": "significant"
+        }
+      },
+      "sources": [
+        {
+          "title": "What domains can I use with Fastmail?",
+          "url": "https://www.fastmail.help/hc/en-us/articles/6239365719055-What-domains-can-I-use-with-Fastmail",
+          "last_verified": "2026-10-21"
+        },
+        {
+          "title": "Plus addressing and subdomain addressing",
+          "url": "https://www.fastmail.help/hc/en-us/articles/360060591053-Plus-addressing-and-subdomain-addressing",
+          "last_verified": "2026-10-21"
+        }
+      ],
+      "notes": "All domains listed here are Fastmail-provided domains from Fastmail's official published domain list. Plus addressing is documented to deliver alias+tag@domain to alias@domain. Emailvet does not apply Fastmail rules to arbitrary custom domains, and does not currently canonicalize Fastmail subdomain addressing."
+    }
+  }
+}

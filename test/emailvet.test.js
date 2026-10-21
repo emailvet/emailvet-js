@@ -1,0 +1,17 @@
+"use strict";
+const test=require("node:test"); const assert=require("node:assert/strict");
+const {analyzeEmail,canonEmail,rulesInfo,rulesVersion,validateRules}=require("../dist/index.js");
+test("gmail",()=>assert.equal(canonEmail("a.b.c.d+123@gmail.com"),"abcd@gmail.com"));
+test("googlemail",()=>assert.equal(canonEmail("A.B+shop@googlemail.com"),"ab@gmail.com"));
+test("unknown",()=>assert.equal(canonEmail("John.Smith+promo@EXAMPLE.COM"),"John.Smith+promo@example.com"));
+test("outlook",()=>assert.equal(canonEmail("Fred+shop@outlook.com"),"fred@outlook.com"));
+test("hotmail generic",()=>assert.equal(canonEmail("Fred.Smith+shop@HOTMAIL.COM"),"Fred.Smith+shop@hotmail.com"));
+test("proton",()=>assert.equal(canonEmail("Alice+shop@protonmail.ch"),"alice@protonmail.ch"));
+test("yandex",()=>assert.equal(canonEmail("My.Address@yandex.com"),"my-address@yandex.com"));
+test("ya.ru generic",()=>assert.equal(canonEmail("My.Address@YA.RU"),"My.Address@ya.ru"));
+test("fastmail",()=>assert.equal(canonEmail("Alice+shop@fastmail.com"),"Alice@fastmail.com"));
+test("fastmail legacy",()=>assert.equal(canonEmail("alice+shop@sent.com"),"alice@sent.com"));
+test("analysis",()=>assert.deepEqual(analyzeEmail("A.B+shop@googlemail.com"),{original:"A.B+shop@googlemail.com",canonical:"ab@gmail.com",provider:"gmail",rulesApplied:["lowercase_local_part","strip_subaddress","ignore_dots","canonicalize_domain"]}));
+test("rules",()=>{assert.equal(rulesVersion(),"2026.10.21.3");assert.deepEqual(rulesInfo(),{version:"2026.10.21.3",schemaVersion:1,source:"bundled"});});
+test("bad schema",()=>assert.throws(()=>validateRules({schema_version:999,rules_version:"x",providers:{}})));
+test("invalid email",()=>{for(const v of [""," ","not-an-email","@example.com","name@","a@b@example.com"])assert.throws(()=>canonEmail(v));});
