@@ -16,6 +16,14 @@
   "bin": {
     "emailvet": "dist/cli.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emailvet/emailvet-js.git"
+  },
+  "homepage": "https://github.com/emailvet/emailvet-js#readme",
+  "bugs": {
+    "url": "https://github.com/emailvet/emailvet-js/issues"
+  },
   "keywords": [
     "email",
     "canonicalization",
